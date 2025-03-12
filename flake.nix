@@ -23,7 +23,7 @@
         let
           pkgs = nixpkgs.legacyPackages.${system};
         in
-        {
+        rec {
           pi3 =
             (nixpkgs.lib.nixosSystem {
               system = "aarch64-linux";
@@ -42,6 +42,12 @@
                 ./image/configuration.nix
               ];
             }).config.system.build.isoImage;
+
+          vm = pkgs.writeShellScriptBin "tik-os-vm" ''
+            ${pkgs.qemu}/bin/qemu-system-x86_64 -enable-kvm \
+                -m 4G \
+                -cdrom ${pc}/iso/nixos.iso
+          '';
         }
       );
     };

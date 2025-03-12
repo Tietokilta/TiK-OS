@@ -25,6 +25,13 @@ nix build .#pc
 ```
 2. Bootable `.iso` file is found under `result/iso`
 
+### Testing in a VM
+
+You can test the (pc) OS in qemu by running the following command:
+```sh
+nix run .#vm
+```
+
 ## Known issues
 
 - Red and Blue colors seem to be inverted on rpi 3
