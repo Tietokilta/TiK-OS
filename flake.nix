@@ -3,7 +3,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     systems.url = "github:nix-systems/default";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-raspberry-pi.url = "github:nix-community/raspberry-pi-nix";
   };
 
   outputs =
@@ -11,7 +11,7 @@
       self,
       nixpkgs,
       systems,
-      nixos-hardware,
+      nixos-raspberry-pi,
       ...
     }@inputs:
     let
@@ -24,11 +24,12 @@
           pkgs = nixpkgs.legacyPackages.${system};
         in
         rec {
-          pi3 =
+          pi =
             (nixpkgs.lib.nixosSystem {
               system = "aarch64-linux";
               modules = [
-                nixos-hardware.nixosModules.raspberry-pi-3
+                nixos-raspberry-pi.nixosModules.raspberry-pi
+                nixos-raspberry-pi.nixosModules.sd-image
                 ./image/pi.nix
                 ./image/configuration.nix
               ];

@@ -1,19 +1,9 @@
 {
-  modulesPath,
-  lib,
-  pkgs,
-  ...
-}:
-{
-  imports = [
-    (modulesPath + "/profiles/minimal.nix")
-    (modulesPath + "/installer/sd-card/sd-image-aarch64.nix")
-  ];
-
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
-  boot.initrd.availableKernelModules = lib.mkOverride 0 [ ];
-  boot.supportedFilesystems = lib.mkOverride 0 [ ];
+  raspberry-pi-nix = {
+    board = "bcm2711";
+    libcamera-overlay.enable = false;
+    serial-console.enable = false;
+  };
 
   sdImage.compressImage = false;
-
 }

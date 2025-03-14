@@ -4,7 +4,7 @@ A NixOS based operating system that displays the [TiK infoscreen](https://tietok
 
 ## Supported devices
 
-- raspberry pi 3
+- raspberry pi 3 & 4
 - generic pc (same as builder host architecture)
 
 ## Building
@@ -13,7 +13,7 @@ A NixOS based operating system that displays the [TiK infoscreen](https://tietok
 
 1. Run
 ```sh
-nix build .#pi3
+nix build .#pi
 ```
 2. `.img` file is found under `result/sd-image`
 
@@ -31,7 +31,3 @@ You can test the (pc) OS in qemu by running the following command:
 ```sh
 nix run .#vm
 ```
-
-## Known issues
-
-- Red and Blue colors seem to be inverted on rpi 3
