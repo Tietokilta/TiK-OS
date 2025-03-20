@@ -21,6 +21,7 @@
   users.users.tik.isNormalUser = true;
 
   services.cage = {
+    package = pkgs.cage.overrideAttrs { patches = [ ../cage-no-cursor.patch ]; };
     user = "tik";
     enable = true;
     program = ''

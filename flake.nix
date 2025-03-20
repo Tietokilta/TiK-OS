@@ -1,7 +1,7 @@
 {
   description = "Build TiK-OS image";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
     nixos-raspberry-pi.url = "github:nix-community/raspberry-pi-nix";
   };
@@ -47,7 +47,7 @@
           vm = pkgs.writeShellScriptBin "tik-os-vm" ''
             ${pkgs.qemu}/bin/qemu-system-x86_64 -enable-kvm \
                 -m 4G \
-                -cdrom ${pc}/iso/nixos.iso
+                -cdrom ${pc}/iso/nixos-*.iso
           '';
         }
       );

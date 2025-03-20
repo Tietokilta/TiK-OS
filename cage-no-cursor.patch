@@ -1,0 +1,36 @@
+diff --git a/seat.c b/seat.c
+index cdf8798..d59284c 100644
+--- a/seat.c
++++ b/seat.c
+@@ -126,11 +126,12 @@ update_capabilities(struct cg_seat *seat)
+ 	}
+ 	wlr_seat_set_capabilities(seat->seat, caps);
+ 
++	wlr_cursor_unset_image(seat->cursor);
+ 	/* Hide cursor if the seat doesn't have pointer capability. */
+ 	if ((caps & WL_SEAT_CAPABILITY_POINTER) == 0) {
+-		wlr_cursor_unset_image(seat->cursor);
++		// wlr_cursor_unset_image(seat->cursor);
+ 	} else {
+-		wlr_cursor_set_xcursor(seat->cursor, seat->xcursor_manager, DEFAULT_XCURSOR);
++		// wlr_cursor_set_xcursor(seat->cursor, seat->xcursor_manager, DEFAULT_XCURSOR);
+ 	}
+ }
+ 
+@@ -483,7 +484,7 @@ handle_request_set_cursor(struct wl_listener *listener, void *data)
+ 	/* This can be sent by any client, so we check to make sure
+ 	 * this one actually has pointer focus first. */
+ 	if (focused_client == event->seat_client->client) {
+-		wlr_cursor_set_surface(seat->cursor, event->surface, event->hotspot_x, event->hotspot_y);
++		// wlr_cursor_set_surface(seat->cursor, event->surface, event->hotspot_x, event->hotspot_y);
+ 	}
+ }
+ 
+@@ -964,5 +965,6 @@ seat_center_cursor(struct cg_seat *seat)
+ 	/* Place the cursor in the center of the output layout. */
+ 	struct wlr_box layout_box;
+ 	wlr_output_layout_get_box(seat->server->output_layout, NULL, &layout_box);
+-	wlr_cursor_warp(seat->cursor, NULL, layout_box.width / 2, layout_box.height / 2);
++	// wlr_cursor_warp(seat->cursor, NULL, layout_box.width / 2, layout_box.height / 2);
++	wlr_cursor_warp(seat->cursor, NULL, layout_box.width * 0.9999, layout_box.height * 0.99999);
+ }
