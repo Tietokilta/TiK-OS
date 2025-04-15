@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # Run every 90 days
+    - cron: '0 0 1 1,4,7,10 *'
+  workflow_dispatch:  # Allow manual triggering
 permissions:
   actions: write
 jobs:
