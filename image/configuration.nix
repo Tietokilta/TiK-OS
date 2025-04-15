@@ -25,7 +25,7 @@
     user = "tik";
     enable = true;
     program = ''
-      ${pkgs.ungoogled-chromium}/bin/chromium --kiosk https://tietokilta.fi/fi/infoscreen
+      ${pkgs.ungoogled-chromium}/bin/chromium --kiosk --force-device-scale-factor=2.0 https://tietokilta.fi/fi/infoscreen
     '';
     environment.WLR_LIBINPUT_NO_DEVICES = "1";
   };
