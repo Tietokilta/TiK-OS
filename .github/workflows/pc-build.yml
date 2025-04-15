@@ -5,15 +5,15 @@ on:
       - main
   schedule:
     # Run every 90 days
-    - cron: '0 0 1 1,4,7,10 *'
-  workflow_dispatch:  # Allow manual triggering
+    - cron: "0 0 1 1,4,7,10 *"
+  workflow_dispatch: # Allow manual triggering
 permissions:
   actions: write
 jobs:
   build-pc-image-artifact:
     runs-on: ubuntu-latest
     concurrency:
-      group: upload-artifact-${{ github.ref_name }}
+      group: upload-artifact-${{ github.ref_name }}-pc-image
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
