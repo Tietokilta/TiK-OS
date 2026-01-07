@@ -35,4 +35,6 @@
   fonts.packages = [
     pkgs.noto-fonts-emoji
   ];
+
+  system.stateVersion = "25.05";
 }
