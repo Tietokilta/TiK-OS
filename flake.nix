@@ -22,8 +22,15 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-        in
-        rec {
+          pcSys =
+            (nixpkgs.lib.nixosSystem {
+              inherit system;
+              modules = [
+                ./image/pc.nix
+                ./image/configuration.nix
+              ];
+            }).config.system.build;
+        in {
           pi =
             (nixpkgs.lib.nixosSystem {
               system = "aarch64-linux";
@@ -35,20 +42,8 @@
               ];
             }).config.system.build.sdImage;
 
-          pc =
-            (nixpkgs.lib.nixosSystem {
-              inherit system;
-              modules = [
-                ./image/pc.nix
-                ./image/configuration.nix
-              ];
-            }).config.system.build.isoImage;
-
-          vm = pkgs.writeShellScriptBin "tik-os-vm" ''
-            ${pkgs.qemu}/bin/qemu-system-x86_64 -enable-kvm \
-                -m 4G \
-                -cdrom ${pc}/iso/nixos-*.iso
-          '';
+          pc = pcSys.isoImage;
+          vm = pcSys.vm;
         }
       );
     };
