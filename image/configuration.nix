@@ -6,8 +6,8 @@ let
   chrome-retry-extension = pkgs.fetchFromGitHub {
     owner = "bluelhf";
     repo = "chrome-retry";
-    tag = "1.0.1";
-    hash = "sha256-eQ6UgrQtalqplVGar2z9f5lGS//5bAOA3iB5wVQaXPM=";
+    tag = "1.1.0";
+    hash = "sha256-zhOGNErlnfE/DqtK3uVJIY3JtbZTEQkQaAGp0z8QPyc=";
   };
 in
 {
