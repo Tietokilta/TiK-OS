@@ -3,9 +3,9 @@
   ...
 }:
 let
-  chrome-retry-extension = pkgs.fetchFromGitHub {
+  browser-retry-extension = pkgs.fetchFromGitHub {
     owner = "bluelhf";
-    repo = "chrome-retry";
+    repo = "browser-retry";
     tag = "1.1.0";
     hash = "sha256-zhOGNErlnfE/DqtK3uVJIY3JtbZTEQkQaAGp0z8QPyc=";
   };
@@ -33,7 +33,7 @@ in
     user = "tik";
     enable = true;
     program = ''
-      ${pkgs.ungoogled-chromium}/bin/chromium --kiosk --load-extension=${chrome-retry-extension} --force-device-scale-factor=2.0 https://tietokilta.fi/fi/infoscreen
+      ${pkgs.ungoogled-chromium}/bin/chromium --kiosk --load-extension=${browser-retry-extension} --force-device-scale-factor=2.0 https://tietokilta.fi/fi/infoscreen
     '';
     environment.WLR_LIBINPUT_NO_DEVICES = "1";
   };
