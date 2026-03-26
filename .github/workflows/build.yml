@@ -16,7 +16,7 @@ jobs:
       group: upload-artifact-${{ github.ref_name }}-pi-image
       cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Free Disk Space
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
@@ -28,9 +28,9 @@ jobs:
           large-packages: true
           docker-images: true
           swap-storage: true
-      - uses: nixbuild/nix-quick-install-action@v30
+      - uses: nixbuild/nix-quick-install-action@v34
       - name: Restore and cache Nix store
-        uses: nix-community/cache-nix-action@v6
+        uses: nix-community/cache-nix-action@v7
         with:
           # restore and save a cache using this key
           primary-key: nix-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('**/*.nix') }}
@@ -50,7 +50,7 @@ jobs:
       - run: nix flake check
       - run: nix build .#pi
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: sd-image
           path: result/sd-image
