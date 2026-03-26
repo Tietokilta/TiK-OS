@@ -23,6 +23,7 @@ in
   networking.useNetworkd = true;
 
   systemd.network.enable = true;
+  services.journald.storage = "none";
 
   time.timeZone = "Europe/Helsinki";
 
